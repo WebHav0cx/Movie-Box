@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 
 function footer() {
   return (
-    <div>
+    <div className="font-dm-sans">
       <div className="flex flex-col gap-9 justify-center items-center">
         <div className="flex justify-center items-center gap-12">
           <Icon
