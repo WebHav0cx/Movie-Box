@@ -3,7 +3,7 @@ import { fetchRandomBackdrop } from "../../api/tmdb";
 import { Icon } from "@iconify/react";
 import imdb from "../../assets/images/imdb.png";
 import rotten from "../../assets/images/rottentomatoes.png";
-import Nav from "../../utilities/nav";
+import Nav from "../../utilities/Nav";
 
 function Header() {
   const [randomBackdrop, setRandomBackdrop] = useState("");
