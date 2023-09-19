@@ -1,10 +1,11 @@
 import React from "react";
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 
 function footer() {
   return (
-    <div className="font-dm-sans">
-      <div className="flex flex-col gap-9 justify-center items-center">
+    <div className="font-dm-sans py-8">
+      <div className="flex flex-col gap-9 justify-center items-center my-8">
         <div className="flex justify-center items-center gap-12">
           <Icon
             className="w-6 h-6 text-gray-900"
@@ -16,13 +17,15 @@ function footer() {
         </div>
         <div>
           <ul className="flex justify-center items-center gap-12">
-            <li className="font-bold text-gray-900 text-lg">
+            <Link to="#" className="font-bold text-gray-900 text-lg">
               Conditions of Use
-            </li>
-            <li className="font-bold text-gray-900 text-lg">
+            </Link>
+            <Link to="#" className="font-bold text-gray-900 text-lg">
               Privacy & Policy
-            </li>
-            <li className="font-bold text-gray-900 text-lg">Press Room</li>
+            </Link>
+            <Link to="#" className="font-bold text-gray-900 text-lg">
+              Press Room
+            </Link>
           </ul>
         </div>
         <div>

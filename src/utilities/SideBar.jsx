@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 function SideBar() {
   return (
-    <div className="flex flex-col justify-center items-center gap-10 pt-10 border border-gray-300 w-56 rounded-tr-[45px] rounded-br-[45px] font-sans">
-      <div className="flex gap-6 justify-center items-center font-bold text-2xl">
+    <div className="flex flex-col justify-center items-center gap-10 pt-10 border border-gray-300 w-56 rounded-tr-[45px] rounded-br-[45px] font-sans mr-4">
+      <div className="flex gap-6 justify-center items-center font-bold text-2xl px-10">
         <img src={Tv} alt="Movie Box Logo" />
         <p>MovieBox</p>
       </div>
@@ -15,13 +15,16 @@ function SideBar() {
           <Icon className="w-[25px] h-[25px] text-gray-400" icon="cil:home" />
           <p className="font-semibold text-xl">Home</p>
         </Link>
-        <li className="flex gap-4 justify-center items-center border-r-4 py-4  w-full border-r-rose-800 bg-rose-300">
+        <Link
+          to="#"
+          className="flex gap-4 justify-center items-center border-r-4 py-4  w-full border-r-rose-800 bg-rose-300"
+        >
           <Icon
             className="w-[25px] h-[25px] text-black"
             icon="bx:camera-movie"
           />
           <p className="font-semibold text-xl text-rose-800">Movies</p>
-        </li>
+        </Link>
         <li className="flex gap-4 justify-center items-center ">
           <Icon
             className="w-[25px] h-[25px] text-gray-400"
@@ -50,7 +53,7 @@ function SideBar() {
         </button>
       </div>
 
-      <div className="flex justify-center items-center gap-4">
+      <div className="flex justify-center items-center gap-4 pb-8">
         <Icon icon="humbleicons:logout" />
         <p>Log out</p>
       </div>

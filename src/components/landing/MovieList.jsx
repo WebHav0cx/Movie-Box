@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchTopMovies } from "../../api/tmdb";
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
 
 function MovieList() {
   const [topMovies, setTopMovies] = useState([]);
@@ -10,7 +10,12 @@ function MovieList() {
     const fetchTopRatedMovies = async () => {
       try {
         const movies = await fetchTopMovies();
-        setTopMovies(movies.slice(0, 10));
+        // Add an 'isClicked' property to each movie item
+        const moviesWithClickState = movies.slice(0, 10).map((movie) => ({
+          ...movie,
+          isClicked: false,
+        }));
+        setTopMovies(moviesWithClickState);
       } catch (error) {
         console.error("Error fetching top rated movies:", error);
       }
@@ -19,8 +24,16 @@ function MovieList() {
     fetchTopRatedMovies();
   }, []);
 
+  const toggleHeart = (movieIndex) => {
+    setTopMovies((prevMovies) =>
+      prevMovies.map((movie, index) =>
+        index === movieIndex ? { ...movie, isClicked: !movie.isClicked } : movie
+      )
+    );
+  };
+
   return (
-    <div className="flex flex-col items-center my-8">
+    <div className="flex flex-col items-center my-8 pt-8">
       <div className="mb-4 flex justify-between w-full px-20">
         <p className="text-2xl font-bold">Featured Movies</p>
         <button className="text-rose-700 flex items-center">
@@ -29,17 +42,24 @@ function MovieList() {
       </div>
       <div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10 px-20">
-          {topMovies.map((movie) => (
+          {topMovies.map((movie, index) => (
             <Link
               to={`/movies/${movie.id}`}
               key={movie.id}
               data-testid="movie-card"
-              className="bg-white rounded-lg
-              max-w-[250px] relative"
+              className="bg-white rounded-lg max-w-[250px] relative"
             >
               <div className="absolute left-36 top-5">
-                <div className="w-7 h-7 rounded-full bg-[#F3F4F6] bg-opacity-80 flex items-center justify-center">
-                  <Icon className="text-gray-300" icon="ri:heart-fill" />
+                <div
+                  className={`w-7 h-7 rounded-full ${
+                    movie.isClicked ? "bg-black" : "bg-[#F3F4F6] bg-opacity-80"
+                  } flex items-center justify-center cursor-pointer`}
+                  onClick={() => toggleHeart(index)}
+                >
+                  <Icon
+                    className={`text-${movie.isClicked ? "black" : "gray-300"}`}
+                    icon="ri:heart-fill"
+                  />
                 </div>
               </div>
               <img
@@ -53,7 +73,7 @@ function MovieList() {
               <p data-testid="movie-release-date">{movie.release_date}</p>
             </Link>
           ))}
-        </div>{" "}
+        </div>
       </div>
     </div>
   );
