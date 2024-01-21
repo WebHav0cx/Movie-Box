@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../api/tmdb";
 import Spinner from "../../utilities/spinner";
+import { Icon } from "@iconify/react";
 
 function getRatingText(rating) {
   if (rating >= 8) {
@@ -30,7 +31,7 @@ function Details() {
         const details = await fetchMovieDetails(id);
         setMovieDetails(details);
       } catch (error) {
-        console.error("Error fetching movie details:", error);
+        alert("Error fetching movie details:", error);
       }
     };
 
@@ -43,26 +44,42 @@ function Details() {
   }
 
   return (
-    <div>
-      <div className="flex items-center">
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col ">
         <img
           src={`https://image.tmdb.org/t/p/w300${movieDetails.poster_path}`}
           alt={movieDetails.title}
           className="w-32 h-48 rounded-md mr-4"
         />
+        <div className="flex gap-2 items-center ">
+          <h2 className="font-bold ">{movieDetails.title} </h2>
+          <Icon icon="radix-icons:dot-filled" />
+          <p className="font-bold">{movieDetails.release_date.slice(0, 4)}</p>
+          <Icon icon="radix-icons:dot-filled" />
+          <p className="font-bold">
+            {getRatingText(movieDetails.vote_average)}
+          </p>
+          <Icon icon="radix-icons:dot-filled" />
+          <p className="font-bold">{formatRuntime(movieDetails.runtime)}</p>
+          {[...new Set(movieDetails.genres.map((genre) => genre.name))].map(
+            (uniqueGenre) => (
+              <Link
+                className="text-pink-600 rounded-full border-2 border-pink-200 font-medium px-5 "
+                key={uniqueGenre}
+              >
+                {uniqueGenre}
+              </Link>
+            )
+          )}
+        </div>
+      </div>
+      <div className="flex gap-7">
         <div>
-          <h2>{movieDetails.title}</h2>
-          <p>Duration: {formatRuntime(movieDetails.runtime)}</p>
-          <p>Year: {movieDetails.release_date.slice(0, 4)}</p>
-          <p>PG Rating: {getRatingText(movieDetails.vote_average)}</p>
-          <p>
-            Action Type:{" "}
-            {movieDetails.genres.map((genre) => genre.name).join(", ")}
-          </p>
-          <p>
-            Drama: {movieDetails.genres.map((genre) => genre.name).join(", ")}
-          </p>
-          <p>Summary: {movieDetails.overview}</p>
+          <p>{movieDetails.overview}</p>
+          <p>{movieDetails.director}</p>
+        </div>
+        <div>
+          <button>show time</button>
         </div>
       </div>
     </div>

@@ -10,35 +10,26 @@ function SideBar() {
         <img src={Tv} alt="Movie Box Logo" />
         <p>MovieBox</p>
       </div>
-      <ul className="flex flex-col gap-6 justify-center items-center w-full ">
+      <ul className="flex flex-col gap-6 justify-center items-center ">
         <Link to="/" className="flex gap-4 justify-center items-center">
-          <Icon className="w-[25px] h-[25px] text-gray-400" icon="cil:home" />
-          <p className="font-semibold text-xl">Home</p>
+          <Icon className=" text-gray-400" icon="cil:home" />
+          <p className="font-semibold ">Home</p>
         </Link>
         <Link
           to="#"
-          className="flex gap-4 justify-center items-center border-r-4 py-4  w-full border-r-rose-800 bg-rose-300"
+          className="flex gap-4 justify-center items-center border-r-4 py-4 border-r-rose-800 bg-rose-300"
         >
-          <Icon
-            className="w-[25px] h-[25px] text-black"
-            icon="bx:camera-movie"
-          />
-          <p className="font-semibold text-xl text-rose-800">Movies</p>
+          <Icon className=" text-black" icon="bx:camera-movie" />
+          <p className="font-semibold  text-rose-800">Movies</p>
         </Link>
-        <li className="flex gap-4 justify-center items-center ">
-          <Icon
-            className="w-[25px] h-[25px] text-gray-400"
-            icon="arcticons:youtube-tv"
-          />
-          <p className="font-semibold text-xl">TV Series</p>
-        </li>
-        <li className="flex gap-4 justify-center items-center">
-          <Icon
-            className="w-[25px] h-[25px] text-gray-400"
-            icon="fluent:calendar-20-regular"
-          />
-          <p className="font-semibold text-xl">Upcoming</p>
-        </li>
+        <Link to="#" className="flex gap-4 justify-center items-center ">
+          <Icon className=" text-gray-400" icon="arcticons:youtube-tv" />
+          <p className="font-semibold ">TV Series</p>
+        </Link>
+        <Link to="#" className="flex gap-4 justify-center items-center">
+          <Icon className=" text-gray-400" icon="fluent:calendar-20-regular" />
+          <p className="font-semibold ">Upcoming</p>
+        </Link>
       </ul>
 
       <div className="border rounded-lg border-rose-600 pt-8 flex flex-col justify-center items-center px-4 w-44 gap-4 pb-4 bg-rose-50">
